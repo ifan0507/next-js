@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { IoPeopleOutline } from "react-icons/io5";
 
-const card = () => {
+const Card = () => {
   return (
     <div className="bg-white shadow-lg rounded-sm transition duration-100 hover:shadow-sm">
       <div className="h-[260px] w-auto rounded-t-sm relative">
@@ -32,4 +32,4 @@ const card = () => {
   );
 };
 
-export default card;
+export default Card;

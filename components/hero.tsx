@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const hero = () => {
+const Hero = () => {
   return (
     <div className="relative h-screen text-white overflow-hidden">
       <div className="absolute inset-0">
@@ -24,4 +24,4 @@ const hero = () => {
   );
 };
 
-export default hero;
+export default Hero;

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-const footer = () => {
+const Footer = () => {
   return (
     <footer className="bg-gray-900">
       <div className="max-w-screen-xl mx-auto px-4 w-full py-10 md:py-16">
@@ -64,4 +64,4 @@ const footer = () => {
   );
 };
 
-export default footer;
+export default Footer;
