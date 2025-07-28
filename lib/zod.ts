@@ -9,7 +9,7 @@ export const ContactSchema = object({
 
 export const RoomSchema = object({
   name: string().min(1, "Room Name is Required."),
-  description: string().min(50, "Description at latest 50 characters."),
+  description: string().min(10, "Description at latest 10 characters."),
   capacity: coerce.number().gt(0, "Capacity is Required."),
   price: coerce.number().gt(0, "Price is Required."),
   amenities: array(string()).nonempty("Amenities is Selected"),

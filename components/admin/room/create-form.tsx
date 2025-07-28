@@ -60,7 +60,7 @@ const CreateForm = ({ amenities }: { amenities: Amenities[] }) => {
         </div>
       ) : null}
       <div className="grid md:grid-cols-12 gap-5">
-        <div className="col-span-8 bg-white p-4">
+        <div className="col-span-6 md:col-span-8 bg-white p-4">
           <div className="mb-4">
             <input type="text" name="name" className="py-2 px-4 rounded-sm border border-gray-400 w-full" placeholder="Room Name" />
             <div aria-live="polite" aria-atomic="true">
@@ -87,7 +87,7 @@ const CreateForm = ({ amenities }: { amenities: Amenities[] }) => {
             </div>
           </div>
         </div>
-        <div className="col-span-4 bg-white p-4">
+        <div className="col-span-6 md:col-span-4 bg-white p-4">
           <label htmlFor="input-file" className="flex flex-col mb-4 items-center justify-center aspect-video border-2 border-gray-300 border-dashed rounded-md cursor-pointer bg-gray-50 relative">
             <div className="flex flex-col items-center justify-center text-gray-500 pt-5 pb-6 z-10">
               {pending ? <BarLoader /> : null}
