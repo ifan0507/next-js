@@ -1,10 +1,11 @@
 "use client";
 import { deleteRoom } from "@/lib/action";
 import { useState } from "react";
-import { IoTrashOutline } from "react-icons/io5";
+import { IoPencilOutline, IoTrashOutline } from "react-icons/io5";
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import SweetSuccess from "@/components/sweet-success";
+import Link from "next/link";
 
 export const DeleteButton = ({ id, imageUrl }: { id: string; imageUrl: string }) => {
   const [open, setOpen] = useState(false);
@@ -83,5 +84,15 @@ export const DeleteButton = ({ id, imageUrl }: { id: string; imageUrl: string })
       </Dialog>
       {showSuccess && <SweetSuccess title="Room delete" message="The room has been permanently removed from your account. All associated data and chat history have been deleted." redirect="/admin/room" back="room" />}
     </>
+  );
+};
+
+export const EditButton = ({ id }: { id: string }) => {
+  return (
+    <Link href={`/admin/room/edit/${id}`}>
+      <button className="p-1  cursor-pointer rounded-full hover:bg-blue-950 hover:text-white">
+        <IoPencilOutline className="size-5" />
+      </button>
+    </Link>
   );
 };

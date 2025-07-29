@@ -42,7 +42,7 @@ const Navlink = () => {
             </Link>
           </li>
           <li>
-            <Link href="/rooms" className="block py-2 px-3 to-gray-800 hover:bg-gray-100 rounded-sm md:hover:bg-transparent md:p-0">
+            <Link href="/room" className="block py-2 px-3 to-gray-800 hover:bg-gray-100 rounded-sm md:hover:bg-transparent md:p-0">
               Rooms
             </Link>
           </li>

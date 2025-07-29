@@ -2,11 +2,9 @@ import { getRooms } from "@/lib/data";
 import Image from "next/image";
 import React from "react";
 import { formatDate, formatCurrency } from "@/lib/utils";
-import { DeleteButton } from "@/components/admin/room/button";
-import { tr } from "zod/locales";
+import { DeleteButton, EditButton } from "@/components/admin/room/button";
 const RoomTable = async () => {
   const rooms = await getRooms();
-
   return (
     <div className="bg-white p-4 mt-5 shadow-sm">
       <div className="overflow-x-auto">
@@ -33,7 +31,10 @@ const RoomTable = async () => {
                   <td className="px-6 py-4">{formatCurrency(room.price)}</td>
                   <td className="px-6 py-4">{formatDate(room.createdAt.toString())}</td>
                   <td className="px-6 py-4 text-right">
-                    <DeleteButton id={room.id} imageUrl={room.image} />
+                    <div className="flex items-center justify-center gap-1">
+                      <EditButton id={room.id} />
+                      <DeleteButton id={room.id} imageUrl={room.image} />
+                    </div>
                   </td>
                 </tr>
               ))

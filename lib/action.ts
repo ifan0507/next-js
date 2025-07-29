@@ -3,6 +3,7 @@ import { ContactSchema, RoomSchema } from "@/lib/zod";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { del } from "@vercel/blob";
+import { revalidatePath } from "next/cache";
 
 export const ContactMessage = async (prevState: unknown, formData: FormData) => {
   const validatedFields = ContactSchema.safeParse(Object.fromEntries(formData.entries()));
@@ -80,5 +81,51 @@ export const deleteRoom = async (id: string, image: string) => {
   } catch (error) {
     console.log(error);
     return false;
+  }
+};
+
+export const updateRoom = async (roomId: string, image: string, prevState: unknown, formData: FormData) => {
+  if (!image) return { message: "Image is Required." };
+
+  const rawData = {
+    name: formData.get("name"),
+    description: formData.get("description"),
+    capacity: formData.get("capacity"),
+    price: formData.get("price"),
+    amenities: formData.getAll("amenities"),
+  };
+
+  const validatedFields = RoomSchema.safeParse(rawData);
+  if (!validatedFields.success) {
+    return { error: validatedFields.error.flatten().fieldErrors };
+  }
+  const { name, description, capacity, price, amenities } = validatedFields.data;
+
+  try {
+    await prisma.$transaction([
+      prisma.room.update({
+        where: { id: roomId },
+        data: {
+          name,
+          description,
+          image,
+          price,
+          capacity,
+          RoomAmenities: {
+            deleteMany: {},
+          },
+        },
+      }),
+      prisma.roomAmenities.createMany({
+        data: amenities.map((item) => ({
+          roomId,
+          amenitiesId: item,
+        })),
+      }),
+    ]);
+    revalidatePath("/admin/room");
+    return { success: true };
+  } catch (error) {
+    console.log(error);
   }
 };
