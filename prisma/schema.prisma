@@ -54,9 +54,10 @@ model Reservation {
   User          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   roomId        String
   Room          Room            @relation(fields: [roomId], references: [id], onDelete: Cascade)
-  updatedAt     DateTime        @updatedAt
   RoomAmenities RoomAmenities[]
-  Payment       Payment[]
+  Payment       Payment?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
 }
 
 model Payment {

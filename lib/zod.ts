@@ -14,3 +14,8 @@ export const RoomSchema = object({
   price: coerce.number().gt(0, "Price is Required."),
   amenities: array(string()).nonempty("Amenities is Selected"),
 });
+
+export const ReservaseSchema = object({
+  name: string().min(1, "Room Name is Required."),
+  phone: string().min(10, "Phone number invalid"),
+});
