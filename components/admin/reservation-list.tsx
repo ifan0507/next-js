@@ -1,4 +1,4 @@
-import { getReservations, getRooms } from "@/lib/data";
+import { getReservations } from "@/lib/data";
 import Image from "next/image";
 import React from "react";
 import { formatDate, formatCurrency } from "@/lib/utils";

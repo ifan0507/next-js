@@ -3,12 +3,12 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { differenceInCalendarDays } from "date-fns";
-import { Calendar, Clock, CreditCard, MapPin, User } from "lucide-react";
+import { Calendar, Clock, CreditCard } from "lucide-react";
 import Link from "next/link";
 
 const MyReserveList = async () => {
   const reservation = await getReservationByUserId();
-  if (!reservation) return notFound;
+  if (!reservation) return notFound();
 
   return (
     <div>
@@ -45,7 +45,7 @@ const MyReserveList = async () => {
               <div className="flex flex-col lg:flex-row">
                 {/* Image Section */}
                 <div className="lg:w-1/3 relative">
-                  <img src={item.Room.image} alt="Room" className="w-full h-64 lg:h-full object-cover" />
+                  <Image src={item.Room.image} alt="Room" className="w-full h-64 lg:h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
 

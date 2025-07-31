@@ -1,7 +1,7 @@
 import { getRevenueReserve, getTotalCustomer } from "@/lib/data";
 import React from "react";
 import { LuChartArea, LuShoppingCart, LuUser } from "react-icons/lu";
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { formatCurrency } from "@/lib/utils";
 import { notFound } from "next/navigation";
 
 const DashboardCard = async () => {
