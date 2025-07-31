@@ -14,10 +14,14 @@ const MyReservationPage = async () => {
     <div className="min-h-screen bg-slate-50">
       <div className="max-w-screen-lg mx-auto mt-10 py-20 px-4">
         <div className="flex items-center justify-between">
-          <div>
+          <div className="mb-8">
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Hi, {session.user.name}</h1>
+            <p className="text-gray-600">Here's your book history</p>
+          </div>
+          {/* <div>
             <h3 className="text-xl text-gray-800 mt-2">Hi, {session.user.name}</h3>
             <p className="mt-1 font-medium mb-4">Here&apos;s your book history</p>
-          </div>
+          </div> */}
         </div>
         <div className="rounded-sm">
           <MyReserveList />

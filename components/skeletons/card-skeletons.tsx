@@ -9,13 +9,15 @@ const CardSkeleton = () => {
         <div className="mb-7">
           <div className="h-6 w-32 rounded bg-gray-200"></div>
         </div>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="h-5 w-5 rounded-full bg-gray-200"></div>
-            <span className="h-6 w-32 rounded bg-gray-200"></span>
+        <div className="flex gap-8">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <div className="h-5 w-5 rounded-full bg-gray-200"></div>
+              <span className="h-6 w-32 rounded bg-gray-200"></span>
+            </div>
           </div>
+          <div className="h-12 w-36 rounded-sm bg-gray-200"></div>
         </div>
-        <div className="h-12 w-36 rounded-sm bg-gray-200"></div>
       </div>
     </div>
   );

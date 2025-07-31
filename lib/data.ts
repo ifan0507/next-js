@@ -146,3 +146,78 @@ export const getReservationByUserId = async () => {
     console.log(error);
   }
 };
+
+export const getRevenueReserve = async () => {
+  try {
+    const result = await prisma.reservation.aggregate({
+      _count: true,
+      _sum: {
+        price: true,
+      },
+      where: {
+        Payment: {
+          status: { not: "failure" },
+        },
+      },
+    });
+    console.log(result);
+    return {
+      revenue: result._sum.price || 0,
+      reserve: result._count,
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getTotalCustomer = async () => {
+  try {
+    const result = await prisma.reservation.findMany({
+      distinct: ["userId"],
+      where: {
+        Payment: {
+          status: { not: "failure" },
+        },
+      },
+      select: { userId: true },
+    });
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getReservations = async () => {
+  const session = await auth();
+  if (!session || !session.user || !session.user.id || session.user.role !== "admin") throw new Error("Unauthorizes Access");
+  try {
+    const result = await prisma.reservation.findMany({
+      include: {
+        Room: {
+          select: {
+            name: true,
+            image: true,
+            price: true,
+          },
+        },
+        User: {
+          select: {
+            name: true,
+            email: true,
+            phone: true,
+          },
+        },
+        Payment: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    console.log(result);
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
